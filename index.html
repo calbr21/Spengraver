@@ -1,438 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPENGRAVER – Crafted For You</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #f5f3ef;
-    --ink: #0e0d0b;
-    --ink-mid: #3a3830;
-    --ink-soft: #7a786e;
-    --border: #d8d4c8;
-    --gold: #b8943a;
-    --gold-light: #d4aa50;
-    --white: #ffffff;
-    --card-bg: #ffffff;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(245,243,239,0.94); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5%; height: 64px;
-  }
-  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.4rem; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
-  .nav-logo span { display: block; font-size: 0.5rem; font-weight: 400; letter-spacing: 0.35em; color: var(--ink-soft); margin-top: -2px; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-etsy { background: var(--ink); color: var(--white) !important; padding: 0.45rem 1.2rem; transition: background 0.2s !important; }
-  .nav-etsy:hover { background: var(--gold) !important; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; text-align: center;
-    padding: 100px 5% 80px; position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: ''; position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(14,13,11,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(14,13,11,0.04) 1px, transparent 1px);
-    background-size: 60px 60px; pointer-events: none;
-  }
-  .hero::after {
-    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 1px; height: 100%;
-    background: linear-gradient(to bottom, transparent, var(--gold) 40%, var(--gold-light) 50%, transparent);
-    opacity: 0.2; pointer-events: none;
-  }
-  .hero-logo-wrap { margin-bottom: 2.5rem; animation: fadeDown 0.9s ease both; position: relative; z-index: 1; }
-  .hero-logo-wrap img { width: min(480px, 80vw); height: auto; display: block; filter: drop-shadow(0 4px 28px rgba(0,0,0,0.1)); }
-  .hero-tagline { font-family: 'Barlow Condensed', sans-serif; font-weight: 300; font-size: clamp(0.9rem, 2vw, 1.2rem); letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.75rem; animation: fadeUp 0.9s 0.2s ease both; position: relative; z-index: 1; }
-  .hero-headline { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3.5rem, 9vw, 7.5rem); line-height: 0.88; letter-spacing: -0.01em; text-transform: uppercase; color: var(--ink); margin-bottom: 1.25rem; animation: fadeUp 0.9s 0.3s ease both; position: relative; z-index: 1; }
-  .hero-headline em { font-style: normal; color: var(--gold); }
-  .hero-sub { font-weight: 300; font-size: clamp(0.95rem, 1.6vw, 1.1rem); color: var(--ink-soft); max-width: 460px; line-height: 1.75; margin-bottom: 2.5rem; animation: fadeUp 0.9s 0.4s ease both; position: relative; z-index: 1; }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.9s 0.5s ease both; position: relative; z-index: 1; }
-  .hero-scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-soft); animation: fadeUp 1s 1s ease both; }
-  .hero-scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: pulse 2s infinite; }
-
-  /* BUTTONS */
-  .btn-primary { background: var(--ink); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.9rem 2.2rem; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
-  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
-  .btn-secondary { background: transparent; color: var(--ink); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.9rem 2.2rem; border: 1.5px solid var(--border); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s, transform 0.15s; }
-  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
-
-  /* SECTION COMMONS */
-  section { padding: 100px 5%; }
-  .section-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 1rem; }
-  .section-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
-  .section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1; text-transform: uppercase; color: var(--ink); margin-bottom: 1rem; }
-  .section-title em { font-style: normal; color: var(--gold); }
-
-  /* ABOUT */
-  #about { background: var(--ink); color: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 5%; align-items: center; }
-  #about .section-label { color: var(--gold); }
-  #about .section-title { color: var(--white); }
-  #about .section-title em { color: var(--gold); }
-  .about-text { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.6); font-weight: 300; margin-bottom: 1.25rem; }
-  .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); margin-top: 2rem; }
-  .stat { background: var(--ink); padding: 1.5rem 1rem; text-align: center; }
-  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.5rem; color: var(--gold); line-height: 1; display: block; }
-  .stat-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 0.3rem; display: block; }
-  .about-visual { position: relative; height: 420px; }
-  .about-visual-inner { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .laser-pattern { width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
-  .laser-lines { position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(184,148,58,0.04) 20px, rgba(184,148,58,0.04) 21px); }
-  .laser-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 8rem; color: transparent; -webkit-text-stroke: 1px rgba(184,148,58,0.25); text-transform: uppercase; letter-spacing: -0.05em; user-select: none; position: absolute; }
-  .laser-circle { width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(184,148,58,0.15); position: absolute; }
-  .laser-circle:nth-child(2) { width: 320px; height: 320px; opacity: 0.6; }
-  .laser-circle:nth-child(3) { width: 420px; height: 420px; opacity: 0.3; }
-
-  /* PRODUCTS */
-  #products { background: var(--bg); }
-  .products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
-  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); }
-  .product-card { background: var(--card-bg); padding: 2.5rem 2rem; position: relative; overflow: hidden; cursor: pointer; text-decoration: none; color: var(--ink); display: block; transition: transform 0.3s; }
-  .product-card:hover { transform: translateY(-4px); z-index: 1; box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-  .product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-  .product-card:hover::before { transform: scaleX(1); }
-  .product-icon { width: 48px; height: 48px; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.3rem; transition: border-color 0.3s; }
-  .product-card:hover .product-icon { border-color: var(--gold); }
-  .product-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.6rem; }
-  .product-desc { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.65; font-weight: 300; margin-bottom: 1.5rem; }
-  .product-link { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 0.4rem; }
-  .product-link::after { content: '→'; transition: transform 0.2s; }
-  .product-card:hover .product-link::after { transform: translateX(4px); }
-
-  /* PROCESS */
-  #process { background: #efece4; text-align: center; }
-  .process-header { margin-bottom: 4rem; }
-  .process-header .section-label { justify-content: center; }
-  .process-header .section-label::before { display: none; }
-  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-  .process-steps::before { content: ''; position: absolute; top: 30px; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(to right, transparent, var(--gold) 20%, var(--gold) 80%, transparent); opacity: 0.35; }
-  .step { padding: 0 1.5rem; }
-  .step-num { width: 60px; height: 60px; border-radius: 50%; background: var(--ink); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; position: relative; z-index: 1; border: 3px solid #efece4; transition: background 0.3s; }
-  .step:hover .step-num { background: var(--gold); }
-  .step-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
-  .step-desc { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.65; font-weight: 300; }
-
-  /* ETSY BANNER */
-  .etsy-banner { background: var(--gold); padding: 3rem 5%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-  .etsy-banner-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(1.5rem, 3vw, 2.5rem); text-transform: uppercase; color: var(--ink); letter-spacing: 0.02em; }
-  .etsy-banner-text span { font-weight: 300; font-size: 0.85em; letter-spacing: 0.1em; display: block; color: rgba(14,13,11,0.55); margin-bottom: 0.2rem; }
-  .btn-etsy { background: var(--ink); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.5rem; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; white-space: nowrap; transition: background 0.2s; }
-  .btn-etsy:hover { background: #1a1408; }
-
-  /* CONTACT */
-  #contact { background: var(--ink); color: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 5%; align-items: start; }
-  #contact .section-label { color: var(--gold); }
-  #contact .section-title { color: var(--white); }
-  #contact .section-title em { color: var(--gold); }
-  .contact-intro { font-size: 1rem; color: rgba(255,255,255,0.55); line-height: 1.8; font-weight: 300; margin-bottom: 2rem; }
-  .contact-options { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-option { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: var(--white); transition: border-color 0.2s, background 0.2s; }
-  .contact-option:hover { border-color: var(--gold); background: rgba(184,148,58,0.05); }
-  .contact-option-icon { font-size: 1.3rem; width: 36px; text-align: center; flex-shrink: 0; }
-  .contact-option-text strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.15rem; }
-  .contact-option-text span { font-size: 0.8rem; color: rgba(255,255,255,0.4); font-weight: 300; }
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-  .form-group input, .form-group textarea, .form-group select { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.9rem; font-weight: 300; padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s; resize: none; -webkit-appearance: none; border-radius: 0; }
-  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
-  .form-group select option { background: #1a1810; }
-  .form-group textarea { height: 110px; }
-  .form-note { font-size: 0.75rem; color: rgba(255,255,255,0.22); font-weight: 300; }
-  .form-submit { background: var(--gold); color: var(--ink); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2rem; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; align-self: flex-start; }
-  .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .form-success { display: none; background: rgba(184,148,58,0.1); border: 1px solid var(--gold); color: var(--gold); padding: 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
-
-  /* FOOTER */
-  footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; letter-spacing: 0.1em; color: var(--white); }
-  .footer-logo span { display: block; font-size: 0.55rem; font-weight: 400; letter-spacing: 0.3em; color: rgba(255,255,255,0.3); margin-top: 2px; }
-  .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
-  .footer-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.18); font-weight: 300; }
-
-  /* ANIMATIONS */
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: none; } }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-  @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    #about, #contact { grid-template-columns: 1fr; }
-    .about-visual { display: none; }
-    .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    .process-steps::before { display: none; }
-    .products-grid { grid-template-columns: 1fr 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .products-grid { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPENGRAVER – Crafted For You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">SPENGRAVER <span>CRAFTED FOR YOU</span></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="https://www.etsy.com/shop/spengraver" target="_blank" class="nav-etsy">Shop on Etsy</a></li>
-  </ul>
-</nav>
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#" class="nav-logo">SPENGRAVER <span>CRAFTED FOR YOU</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://www.etsy.com/shop/spengraver" target="_blank" class="nav-etsy">Shop on Etsy</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-logo-wrap">
-    <img src="481569790_614195804746828_1379751656605520908_n.jpg" alt="SPENGRAVER – Crafted For You">
-  </div>
-  <p class="hero-tagline">Precision Laser Engraving</p>
-  <h1 class="hero-headline">Made <em>Personal</em></h1>
-  <p class="hero-sub">Every piece is engraved by hand-crafted laser precision, tailored to your vision. Gifts, keepsakes, and custom orders — crafted for you.</p>
-  <div class="hero-ctas">
-    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="btn-primary">Shop on Etsy</a>
-    <a href="#contact" class="btn-secondary">Get a Custom Quote</a>
-  </div>
-  <div class="hero-scroll">Scroll</div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="reveal">
-    <p class="section-label">About Spengraver</p>
-    <h2 class="section-title">Precision<br>meets <em>craft</em></h2>
-    <p class="about-text">Spengraver is a UK-based laser engraving studio creating beautiful, personalised pieces with meticulous attention to detail. Every order is a one-of-a-kind commission.</p>
-    <p class="about-text">Whether it's a heartfelt gift, a wedding keepsake, or a bespoke business item — if you can dream it, we can engrave it.</p>
-    <div class="about-stats">
-      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Custom</span></div>
-      <div class="stat"><span class="stat-num">★ 5</span><span class="stat-label">Star Rated</span></div>
-      <div class="stat"><span class="stat-num">UK</span><span class="stat-label">Based</span></div>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-logo-wrap">
+      <img src="481569790_614195804746828_1379751656605520908_n.jpg" alt="SPENGRAVER – Crafted For You">
     </div>
-  </div>
-  <div class="about-visual reveal">
-    <div class="about-visual-inner">
-      <div class="laser-pattern">
-        <div class="laser-lines"></div>
-        <div class="laser-circle"></div>
-        <div class="laser-circle"></div>
-        <div class="laser-circle"></div>
-        <span class="laser-text">SP</span>
+    <p class="hero-tagline">Precision Laser Engraving</p>
+    <h1 class="hero-headline">Made <em>Personal</em></h1>
+    <p class="hero-sub">Every piece is engraved by hand-crafted laser precision, tailored to your vision. Gifts, keepsakes, and custom orders — crafted for you.</p>
+    <div class="hero-ctas">
+      <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="btn-primary">Shop on Etsy</a>
+      <a href="#contact" class="btn-secondary">Get a Custom Quote</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="reveal">
+      <p class="section-label">About Spengraver</p>
+      <h2 class="section-title">Precision<br>meets <em>craft</em></h2>
+      <p class="about-text">Spengraver is a UK-based laser engraving studio creating beautiful, personalised pieces with meticulous attention to detail. Every order is a one-of-a-kind commission.</p>
+      <p class="about-text">Whether it's a heartfelt gift, a wedding keepsake, or a bespoke business item — if you can dream it, we can engrave it.</p>
+      <div class="about-stats">
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Custom</span></div>
+        <div class="stat"><span class="stat-num">★ 5</span><span class="stat-label">Star Rated</span></div>
+        <div class="stat"><span class="stat-num">UK</span><span class="stat-label">Based</span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section id="products">
-  <div class="products-header reveal">
-    <div>
-      <p class="section-label">What We Make</p>
-      <h2 class="section-title">Our <em>Products</em></h2>
-    </div>
-    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="btn-secondary">View All on Etsy →</a>
-  </div>
-  <div class="products-grid">
-    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="product-card reveal">
-      <div class="product-icon">🎁</div>
-      <div class="product-name">Personalised Gifts</div>
-      <p class="product-desc">Engraved keepsakes, photo plaques, and memory boxes for every occasion — birthdays, anniversaries, and more.</p>
-      <span class="product-link">Shop Now</span>
-    </a>
-    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="product-card reveal">
-      <div class="product-icon">💍</div>
-      <div class="product-name">Wedding &amp; Events</div>
-      <p class="product-desc">Custom table signs, favours, ring boxes, and wedding gifts engraved with names, dates, and messages.</p>
-      <span class="product-link">Shop Now</span>
-    </a>
-    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="product-card reveal">
-      <div class="product-icon">🪵</div>
-      <div class="product-name">Wooden Items</div>
-      <p class="product-desc">Engraved chopping boards, coasters, frames, and decorative wooden pieces with a beautiful natural finish.</p>
-      <span class="product-link">Shop Now</span>
-    </a>
-    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="product-card reveal">
-      <div class="product-icon">🏢</div>
-      <div class="product-name">Business &amp; Branding</div>
-      <p class="product-desc">Branded items, corporate gifts, plaques, and signage engraved with your logo or custom branding.</p>
-      <span class="product-link">Shop Now</span>
-    </a>
-    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="product-card reveal">
-      <div class="product-icon">🐾</div>
-      <div class="product-name">Pet Keepsakes</div>
-      <p class="product-desc">Personalised pet portraits, memorial plaques, and tags engraved with your furry friend's details.</p>
-      <span class="product-link">Shop Now</span>
-    </a>
-    <a href="#contact" class="product-card reveal">
-      <div class="product-icon">✏️</div>
-      <div class="product-name">Custom Orders</div>
-      <p class="product-desc">Have something unique in mind? Get in touch and we'll create something completely bespoke, just for you.</p>
-      <span class="product-link">Request Quote</span>
-    </a>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section id="process">
-  <div class="process-header reveal">
-    <p class="section-label">How It Works</p>
-    <h2 class="section-title">The <em>Process</em></h2>
-  </div>
-  <div class="process-steps">
-    <div class="step reveal">
-      <div class="step-num">01</div>
-      <div class="step-title">Browse &amp; Choose</div>
-      <p class="step-desc">Visit the Etsy shop and browse our range, or reach out with a completely custom idea.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">02</div>
-      <div class="step-title">Personalise</div>
-      <p class="step-desc">Send us your text, names, dates, or designs. We'll confirm every detail before we begin.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">03</div>
-      <div class="step-title">We Engrave</div>
-      <p class="step-desc">Your item is precision laser engraved with care, quality-checked, and beautifully finished.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">04</div>
-      <div class="step-title">Delivered</div>
-      <p class="step-desc">Carefully packaged and dispatched to your door — or perfect for gifting direct.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ETSY BANNER -->
-<div class="etsy-banner reveal">
-  <div class="etsy-banner-text">
-    <span>Find us on Etsy</span>
-    Shop Spengraver Now
-  </div>
-  <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="btn-etsy">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11.813 0C5.29 0 0 5.29 0 11.813c0 6.52 5.29 11.81 11.813 11.81C18.333 23.623 23.623 18.333 23.623 11.813 23.623 5.29 18.333 0 11.813 0zm.468 5.688l.11.024c.618.14 3.637.303 4.254.303l.126.001v1.327h-.063c-.553 0-1.243.215-1.553.484-.31.27-.375.87-.375 2.21v.87h1.688l-.251 1.73H14.78v6.078H13.03v-6.079h-1.344v-1.729H13.03v-.87c0-2.086.457-3.066 1.063-3.687.594-.62 1.604-.828 2.186-.828l.188.006V5.68l-.186-.023c-.647-.075-3.59-.297-4.13-.297l-.07.001V3.97c.001-.002.148.002.2.003z"/>
-    </svg>
-    Visit Our Etsy Shop
-  </a>
-</div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="reveal">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="section-title">Let's make<br>something <em>special</em></h2>
-    <p class="contact-intro">Have a custom idea, a question, or just want to say hello? Reach out via the form or through our Etsy shop and we'll get back to you as soon as possible.</p>
-    <div class="contact-options">
-      <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="contact-option">
-        <span class="contact-option-icon">🛍️</span>
-        <div class="contact-option-text">
-          <strong>Etsy Shop</strong>
-          <span>etsy.com/shop/spengraver — message us directly</span>
+    <div class="about-visual reveal">
+      <div class="about-visual-inner">
+        <div class="laser-pattern">
+          <div class="laser-lines"></div>
+          <div class="laser-circle"></div>
+          <div class="laser-circle"></div>
+          <div class="laser-circle"></div>
+          <span class="laser-text">SP</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRODUCTS ── -->
+  <section id="products">
+    <div class="products-header reveal">
+      <div>
+        <p class="section-label">What We Make</p>
+        <h2 class="section-title">Our <em>Products</em></h2>
+      </div>
+      <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="btn-secondary">View All on Etsy →</a>
+    </div>
+    <div class="products-grid">
+
+      <!-- Product 1: Tealight Candle Holders -->
+      <a href="https://www.etsy.com/uk/listing/4465327480/3-tealight-candle-holders-on-a-stand" target="_blank" class="product-card has-img reveal">
+        <img src="candle.webp" alt="3 Tealight Candle Holders on a Stand" class="product-img">
+        <div class="product-price">£17.50</div>
+        <div class="product-name">Tealight Candle Holders — Set of 3</div>
+        <div class="product-materials">Wood: Bubinga · Walnut · Ply</div>
+        <p class="product-desc">Three individual laser-engraved wooden candle holders on a stand. Choose your own letters, numbers or symbols to spell any word or name. Tealights included. Perfect for gifts and special occasions.</p>
+        <span class="product-link">Shop Now</span>
       </a>
-      <a href="mailto:hello@spengraver.co.uk" class="contact-option">
-        <span class="contact-option-icon">✉️</span>
-        <div class="contact-option-text">
-          <strong>Email Us</strong>
-          <span>hello@spengraver.co.uk</span>
-        </div>
+
+      <!-- Product 2: Darts Stand -->
+      <a href="https://www.etsy.com/uk/listing/4305413890/customizable-darts-rack-wall-mountable" target="_blank" class="product-card has-img reveal">
+        <img src="darts.webp" alt="Darts Stand" class="product-img">
+        <div class="product-price">£12.50</div>
+        <div class="product-name">Darts Stand</div>
+        <div class="product-materials">Wood: Plain Basewood · Walnut · Bubinga</div>
+        <p class="product-desc">A wall-mountable Darts rack. Keep upto 2 sets of darts in this customised rack. Add any logo and text. Perfect present or a great part of your darts setup.</p>
+        <span class="product-link">Shop Now</span>
       </a>
+
+      <!-- Product 3: Darts Stand - better -->
+      <a href="https://www.etsy.com/uk/listing/4446886007/customizable-darts-and-flights-rack-wall" target="_blank" class="product-card has-img reveal">
+        <img src="darts-better.AVIF" alt="Darts Stand and Flights Rack" class="product-img">
+        <div class="product-price">£20</div>
+        <div class="product-name">Darts Stand and Flights Rack</div>
+        <div class="product-materials">Wood: Plain Basewood · Walnut · Bubinga</div>
+        <p class="product-desc">A wall-mountable Darts rack with flight storage. Keep upto 2 sets of darts and flights in this customised rack. Add any logo and text. Perfect present or a great part of your darts setup.</p>
+        <span class="product-link">Shop Now</span>
+      </a>
+
+      <!-- Product 4: Wooden cake stand -->
+      <a href="https://www.etsy.com/uk/listing/4354044939/wooden-cake-stand-reusable-2-tier" target="_blank" class="product-card has-img reveal">
+        <img src="cake-stand.jpg" alt="Wooden Cake Stand" class="product-img">
+        <div class="product-price">£20</div>
+        <div class="product-name">Wooden Cake Stand</div>
+        <div class="product-materials">Wood: 3mm Bubinga · 3mm Walnut </div>
+        <p class="product-desc">A beautiful wooden cake stand, perfect for displaying your desserts or as a decorative piece.</p>
+        <span class="product-link">Shop Now</span>
+      </a>
+
+      <!-- Product 4: Wooden cake stand -->
+      <a href="https://www.etsy.com/uk/listing/4365762369/cakescone-stand-topper-customisable" target="_blank" class="product-card has-img reveal">
+        <img src="cake-topper.jpg" alt="Wooden Cake Stand Topper" class="product-img">
+        <div class="product-price">£6.50</div>
+        <div class="product-name">Wooden Cake Stand Topper</div>
+        <div class="product-materials">Wood: Bubinga · Walnut </div>
+        <p class="product-desc">This topper is for use with the 2 tier cake stand available on my Etsy store.
+Choose from a variety of designs & 2 different choices of wood. Customise the content for any occasion i.e Christmas, Birthday, any congratulations or well wishing events and so on..</p>
+        <span class="product-link">Shop Now</span>
+      </a>
+
+      <!-- Product 6: Custom Orders CTA -->
+      <a href="#contact" class="product-card reveal">
+        <div class="product-icon">✏️</div>
+        <div class="product-name">Custom Orders</div>
+        <p class="product-desc">Have something unique in mind? Get in touch and we'll create something completely bespoke, just for you.</p>
+        <span class="product-link">Request Quote</span>
+      </a>
+
     </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section id="process">
+    <div class="process-header reveal">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">The <em>Process</em></h2>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Browse &amp; Choose</div>
+        <p class="step-desc">Visit the Etsy shop and browse our range, or reach out with a completely custom idea.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-title">Personalise</div>
+        <p class="step-desc">Send us your text, names, dates, or designs. We'll confirm every detail before we begin.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-title">We Engrave</div>
+        <p class="step-desc">Your item is precision laser engraved with care, quality-checked, and beautifully finished.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-title">Delivered</div>
+        <p class="step-desc">Carefully packaged and dispatched to your door — or perfect for gifting direct.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ETSY BANNER ── -->
+  <div class="etsy-banner reveal">
+    <div class="etsy-banner-text">
+      <span>Find us on Etsy</span>
+      Shop Spengraver Now
+    </div>
+    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="btn-etsy">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.813 0C5.29 0 0 5.29 0 11.813c0 6.52 5.29 11.81 11.813 11.81C18.333 23.623 23.623 18.333 23.623 11.813 23.623 5.29 18.333 0 11.813 0zm.468 5.688l.11.024c.618.14 3.637.303 4.254.303l.126.001v1.327h-.063c-.553 0-1.243.215-1.553.484-.31.27-.375.87-.375 2.21v.87h1.688l-.251 1.73H14.78v6.078H13.03v-6.079h-1.344v-1.729H13.03v-.87c0-2.086.457-3.066 1.063-3.687.594-.62 1.604-.828 2.186-.828l.188.006V5.68l-.186-.023c-.647-.075-3.59-.297-4.13-.297l-.07.001V3.97c.001-.002.148.002.2.003z"/>
+      </svg>
+      Visit Our Etsy Shop
+    </a>
   </div>
-  <div class="reveal">
-    <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" placeholder="Jane Smith" required>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Let's make<br>something <em>special</em></h2>
+      <p class="contact-intro">Have a custom idea, a question, or just want to say hello? Reach out via the form or through our Etsy shop and we'll get back to you as soon as possible.</p>
+      <div class="contact-options">
+        <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="contact-option">
+          <span class="contact-option-icon">🛍️</span>
+          <div class="contact-option-text">
+            <strong>Etsy Shop</strong>
+            <span>etsy.com/shop/spengraver — message us directly</span>
+          </div>
+        </a>
+        <a href="mailto:hello@spengraver.co.uk" class="contact-option">
+          <span class="contact-option-icon">✉️</span>
+          <div class="contact-option-text">
+            <strong>Email Us</strong>
+            <span>IDK WHAT EMAIL TO PUT</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Steven Hill" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="lindachill56@gmail.com" required>
+          </div>
         </div>
         <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="jane@example.com" required>
+          <label>What are you interested in?</label>
+          <select>
+            <option value="">Select a product type...</option>
+            <option>Personalised Gift</option>
+            <option>Wedding / Event Item</option>
+            <option>Wooden Engraving</option>
+            <option>Business / Branding</option>
+            <option>Something Custom</option>
+          </select>
         </div>
-      </div>
-      <div class="form-group">
-        <label>What are you interested in?</label>
-        <select>
-          <option value="">Select a product type...</option>
-          <option>Personalised Gift</option>
-          <option>Wedding / Event Item</option>
-          <option>Wooden Engraving</option>
-          <option>Business / Branding</option>
-          <option>Pet Keepsake</option>
-          <option>Something Custom</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Tell us about your order</label>
-        <textarea placeholder="Describe what you have in mind — names, dates, messages, sizes, materials, etc."></textarea>
-      </div>
-      <p class="form-note">We aim to reply within 24 hours. For fastest response, message us directly on Etsy.</p>
-      <button type="submit" class="form-submit">Send Message</button>
-      <div class="form-success" id="formSuccess">✓ Message sent — we'll be in touch soon!</div>
-    </form>
-  </div>
-</section>
+        <div class="form-group">
+          <label>Tell us about your order</label>
+          <textarea placeholder="Describe what you have in mind — names, dates, messages, sizes, materials, etc."></textarea>
+        </div>
+        <p class="form-note">We aim to reply within 24 hours. For fastest response, message us directly on Etsy.</p>
+        <button type="submit" class="form-submit">Send Message</button>
+        <div class="form-success" id="formSuccess">✓ Message sent — we'll be in touch soon!</div>
+      </form>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">SPENGRAVER <span>CRAFTED FOR YOU</span></div>
-  <ul class="footer-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="https://www.etsy.com/shop/spengraver" target="_blank">Etsy Shop</a></li>
-  </ul>
-  <p class="footer-copy">© 2025 Spengraver. All rights reserved.</p>
-</footer>
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">SPENGRAVER <span>CRAFTED FOR YOU</span></div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://www.etsy.com/shop/spengraver" target="_blank">Etsy Shop</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Spengraver. All rights reserved.</p>
+  </footer>
 
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Contact form
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = document.querySelector('.form-submit');
-    btn.textContent = 'Sending...';
-    setTimeout(() => {
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    }, 1000);
-  }
-</script>
+    // Contact form
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.querySelector('.form-submit');
+      btn.textContent = 'Sending...';
+      setTimeout(() => {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      }, 1000);
+    }
+  </script>
+
 </body>
 </html>
