@@ -1195,13 +1195,22 @@ footer {
     display: none;
   }
 
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
+ .products-grid {
+  display: -webkit-grid;
+  display: grid;
+  -webkit-grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
 
   .process-steps {
     grid-template-columns: 1fr;
   }
+
+  .product-card {
+    padding: 1.25rem 1rem;
+  }  
+  
+
 }
 
 /* Safari-specific fixes */
