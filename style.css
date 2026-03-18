@@ -458,7 +458,7 @@ section {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.5px;
   background: var(--border);
   border: 1.5px solid var(--border);
@@ -517,7 +517,7 @@ section {
 .product-img {
   width: calc(100% + 4rem);
   margin: -2.5rem -2rem 1.5rem;
-  height: 500px;
+  height: 300px;
   object-fit: cover;
   display: block;
   transition: transform 0.4s;
