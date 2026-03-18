@@ -967,7 +967,7 @@ footer {
   background: var(--bg);
   padding: 100px 5%;
 }
-
+ 
 .reviews-header {
   display: flex;
   justify-content: space-between;
@@ -976,13 +976,13 @@ footer {
   flex-wrap: wrap;
   gap: 1rem;
 }
-
+ 
 .reviews-overall {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-
+ 
 .reviews-overall-score {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
@@ -990,19 +990,19 @@ footer {
   line-height: 1;
   color: var(--ink);
 }
-
+ 
 .reviews-overall-detail {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
-
+ 
 .reviews-stars-large {
   color: var(--gold);
   font-size: 1.1rem;
   letter-spacing: 0.05em;
 }
-
+ 
 .reviews-overall-label {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.7rem;
@@ -1010,7 +1010,7 @@ footer {
   text-transform: uppercase;
   color: var(--ink-soft);
 }
-
+ 
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1018,7 +1018,7 @@ footer {
   background: var(--border);
   border: 1.5px solid var(--border);
 }
-
+ 
 .review-card {
   background: var(--white);
   padding: 2rem 2rem 1.75rem;
@@ -1028,13 +1028,13 @@ footer {
   position: relative;
   transition: transform 0.3s;
 }
-
+ 
 .review-card:hover {
   transform: translateY(-3px);
   z-index: 1;
   box-shadow: 0 12px 40px rgba(0,0,0,0.07);
 }
-
+ 
 .review-card::before {
   content: '\201C';
   position: absolute;
@@ -1048,13 +1048,13 @@ footer {
   font-weight: 900;
   pointer-events: none;
 }
-
+ 
 .review-stars {
   color: var(--gold);
   font-size: 0.85rem;
   letter-spacing: 0.1em;
 }
-
+ 
 .review-text {
   font-size: 0.92rem;
   line-height: 1.75;
@@ -1063,7 +1063,7 @@ footer {
   font-style: italic;
   flex: 1;
 }
-
+ 
 .review-footer {
   display: flex;
   justify-content: space-between;
@@ -1074,7 +1074,7 @@ footer {
   gap: 0.5rem;
   flex-wrap: wrap;
 }
-
+ 
 .review-author {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
@@ -1083,21 +1083,21 @@ footer {
   text-transform: uppercase;
   color: var(--ink);
 }
-
+ 
 .review-meta {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.2rem;
 }
-
+ 
 .review-date {
   font-size: 0.72rem;
   color: var(--ink-soft);
   font-weight: 300;
   letter-spacing: 0.05em;
 }
-
+ 
 .review-product {
   font-size: 0.7rem;
   color: var(--gold);
@@ -1107,23 +1107,24 @@ footer {
   text-transform: uppercase;
   text-align: right;
 }
-
+ 
 .reviews-etsy-link {
   display: flex;
   justify-content: center;
   margin-top: 2.5rem;
 }
-
+ 
 @media (max-width: 700px) {
   .reviews-grid {
     grid-template-columns: 1fr;
   }
-
+ 
   .reviews-header {
     flex-direction: column;
     align-items: flex-start;
   }
 }
+ 
 
 
 
@@ -1200,5 +1201,23 @@ footer {
 
   .process-steps {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .hero-ctas {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+ 
+  .nav-links {
+    -webkit-gap: 2.5rem;
+    gap: 2.5rem;
+  }
+ 
+  .product-img {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 }
