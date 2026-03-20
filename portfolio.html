@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – SPENGRAVER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="index.html" class="nav-logo">SPENGRAVER <span>CRAFTED FOR YOU</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#">Home</a></li>
+      <li><a href="portfolio.html" class="nav-active">Portfolio</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#products">Products</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="https://www.etsy.com/shop/spengraver" target="_blank" class="nav-etsy">Shop on Etsy</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── PORTFOLIO HERO ── -->
+  <div class="portfolio-hero">
+    <p class="hero-tagline">Our Work</p>
+    <h1 class="portfolio-hero-title">Client <em>Portfolio</em></h1>
+    <p class="portfolio-hero-sub">A selection of pieces we've created for customers — every one unique, every one crafted for them.</p>
+  </div>
+
+  <!-- ── PORTFOLIO GRID ── -->
+  <section class="portfolio-section">
+    <div class="portfolio-grid">
+
+      <div class="portfolio-item reveal">
+        <img src="YOUR-IMAGE.jpg" alt="Description">
+        <div class="portfolio-overlay">
+          <span class="portfolio-caption">Your caption here</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal">
+        <img src="YOUR-IMAGE.jpg" alt="Description">
+        <div class="portfolio-overlay">
+          <span class="portfolio-caption">Your caption here</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal">
+        <img src="YOUR-IMAGE.jpg" alt="Description">
+        <div class="portfolio-overlay">
+          <span class="portfolio-caption">Your caption here</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal">
+        <img src="YOUR-IMAGE.jpg" alt="Description">
+        <div class="portfolio-overlay">
+          <span class="portfolio-caption">Your caption here</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal">
+        <img src="YOUR-IMAGE.jpg" alt="Description">
+        <div class="portfolio-overlay">
+          <span class="portfolio-caption">Your caption here</span>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal">
+        <img src="YOUR-IMAGE.jpg" alt="Description">
+        <div class="portfolio-overlay">
+          <span class="portfolio-caption">Your caption here</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">SPENGRAVER <span>CRAFTED FOR YOU</span></div>
+    <ul class="footer-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#products">Products</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="https://www.etsy.com/shop/spengraver" target="_blank">Etsy Shop</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Spengraver. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
