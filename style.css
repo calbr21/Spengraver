@@ -19,6 +19,7 @@
   --gold-light: #d4aa50;
   --white: #ffffff;
   --card-bg: #ffffff;
+  --dark-surface: #0e0d0b;
 }
 
 html {
@@ -90,7 +91,7 @@ nav {
 }
 
 .nav-etsy {
-  background: var(--ink);
+  background: var(--dark-surface);
   color: var(--white) !important;
   padding: 0.45rem 1.2rem;
   transition: background 0.2s !important;
@@ -185,6 +186,7 @@ nav {
   color: var(--gold);
 }
 
+
 .hero-sub {
   font-weight: 300;
   font-size: clamp(0.95rem, 1.6vw, 1.1rem);
@@ -237,7 +239,7 @@ nav {
    ============================================================ */
 
 .btn-primary {
-  background: var(--ink);
+  background: var(--dark-surface);
   color: var(--white);
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
@@ -327,7 +329,7 @@ section {
    ============================================================ */
 
 #about {
-  background: var(--ink);
+  background: var(--dark-surface);
   color: var(--white);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -357,7 +359,7 @@ section {
 }
 
 .stat {
-  background: var(--ink);
+  background: var(--dark-surface);
   padding: 1.5rem 1rem;
   text-align: center;
 }
@@ -609,6 +611,102 @@ section {
 }
 
 /* ============================================================
+   PRODUCTS SEE MORE STRIP
+   ============================================================ */
+
+.products-seemore {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--dark-surface);
+  color: var(--white);
+  padding: 2rem 2.5rem;
+  margin-top: 1.5px;
+  text-decoration: none;
+  gap: 1rem;
+  transition: background 0.2s;
+}
+
+.products-seemore:hover {
+  background: #1a1810;
+}
+
+.products-seemore:hover .products-seemore-arrow {
+  transform: translateX(8px);
+}
+
+.products-seemore-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+
+.products-seemore-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.products-seemore-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.products-seemore-count {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.products-seemore-arrow {
+  font-size: 1.8rem;
+  color: var(--gold);
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+/* ============================================================
+   PAGE HERO (products.html)
+   ============================================================ */
+
+.page-hero {
+  padding: 160px 5% 80px;
+  text-align: center;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.page-hero .section-label {
+  justify-content: center;
+}
+
+.page-hero .section-label::before {
+  display: none;
+}
+
+.page-hero .section-title {
+  font-size: clamp(3rem, 7vw, 6rem);
+  margin-bottom: 1.25rem;
+}
+
+.page-hero-sub {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ============================================================
    PROCESS
    ============================================================ */
 
@@ -654,7 +752,7 @@ section {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--dark-surface);
   color: var(--white);
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900;
@@ -722,7 +820,7 @@ section {
 }
 
 .btn-etsy {
-  background: var(--ink);
+  background: var(--dark-surface);
   color: var(--white);
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
@@ -749,7 +847,7 @@ section {
    ============================================================ */
 
 #contact {
-  background: var(--ink);
+  background: var(--dark-surface);
   color: var(--white);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -921,7 +1019,7 @@ section {
    ============================================================ */
 
 footer {
-  background: var(--ink);
+  background: var(--dark-surface);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   padding: 3rem 5%;
   display: flex;
@@ -1163,6 +1261,7 @@ footer {
   50%       { opacity: 1; }
 }
 
+
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -1229,6 +1328,64 @@ footer {
 @supports (-webkit-touch-callout: none) {
   .product-img {
     transform: translateZ(0);
+  }
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --bg:           #171512;
+    --ink:          #ede9e0;
+    --ink-mid:      #c0bbb0;
+    --ink-soft:     #7a7870;
+    --border:       #2e2b24;
+    --card-bg:      #1f1d18;
+    --dark-surface: #0d0c0a;
+  }
+
+  /* Nav */
+  nav {
+    background: rgba(23, 21, 18, 0.95);
+  }
+
+  /* Hero grid lines — lighten for dark bg */
+  .hero::before {
+    background-image:
+      linear-gradient(rgba(237, 233, 224, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(237, 233, 224, 0.04) 1px, transparent 1px);
+  }
+
+  /* Process section */
+  #process {
+    background: #1a1814;
+  }
+
+  .step-num {
+    border-color: #1a1814;
+  }
+
+  /* Product & review cards — use card-bg instead of hardcoded white */
+  .review-card {
+    background: var(--card-bg);
+  }
+
+  /* Etsy banner — text sits on gold so must stay dark */
+  .etsy-banner-text {
+    color: #0e0d0b;
+  }
+
+  /* Page hero (products.html) */
+  .page-hero {
+    border-bottom-color: var(--border);
+  }
+
+  /* Form select dropdown */
+  .form-group select option {
+    background: #1a1814;
   }
 }
 
