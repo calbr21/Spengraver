@@ -18,7 +18,7 @@
       <li><a href="index.html#">Home</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#products">Products</a></li>
+      <li><a href="products.html">Products</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://www.etsy.com/shop/spengraver" target="_blank" class="nav-etsy">Shop on Etsy</a></li>
     </ul>
@@ -72,7 +72,7 @@
         <p class="section-label">What We Make</p>
         <h2 class="section-title">Our <em>Products</em></h2>
       </div>
-      <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="btn-secondary">View All on Etsy →</a>
+      <a href="products.html" class="btn-secondary">See All Products →</a>
     </div>
     <div class="products-grid">
 
@@ -116,50 +116,19 @@
         <div class="product-materials">Wood: Bubinga · Walnut</div>
       </a>
 
-      <!-- Product 6: 70CL Whiskey Bottle Gift Box -->
-      <a href="#contact" class="product-card has-img reveal">
-        <span class="product-badge">Coming Soon</span>
-        <img src="70cl.webp" alt="70CL Whiskey Bottle Gift Box" class="product-img">
-        <div class="product-price">£15</div>
-        <div class="product-name">70CL Whiskey Bottle Gift Box</div>
-        <div class="product-materials">Wood: Bubinga · Walnut · Basewood</div>
-      </a>
-
-      <!-- Product 7: 30CL Whiskey Bottle Gift Box -->
-      <a href="#contact" class="product-card has-img reveal">
-        <span class="product-badge">Coming Soon</span>
-        <img src="30cl.webp" alt="30CL Whiskey Bottle Gift Box" class="product-img">
-        <div class="product-price">£12</div>
-        <div class="product-name">30CL Whiskey Bottle Gift Box</div>
-        <div class="product-materials">Wood: Bubinga · Walnut · Basewood</div>
-      </a>
-
-      <!-- Product 8: Leather Keyring -->
-      <a href="#contact" class="product-card has-img reveal">
-        <span class="product-badge">Coming Soon</span>
-        <img src="keyring.jpeg" alt="Leather Keyring" class="product-img">
-        <div class="product-price">£2.50</div>
-        <div class="product-name">Leather Keyring</div>
-        <div class="product-materials">Leather</div>
-      </a>
-
-      <!-- Product 9: Table Dart Stand -->
-      <a href="#contact" class="product-card has-img reveal">
-        <span class="product-badge">Coming Soon</span>
-        <img src="table-darts.jpg" alt="Table Dart Stand" class="product-img">
-        <div class="product-price">£5</div>
-        <div class="product-name">Table Dart Stand</div>
-        <div class="product-materials">Wood</div>
-      </a>
-
-      <!-- Product 10: Custom Orders CTA -->
-      <a href="#contact" class="product-card reveal">
-        <div class="product-icon">✏️</div>
-        <div class="product-name">Custom Orders</div>
-        <span class="product-link">Request Quote</span>
-      </a>
-
     </div>
+
+    <a href="products.html" class="products-seemore reveal">
+      <div class="products-seemore-left">
+        <p class="products-seemore-eyebrow">Full Catalogue</p>
+        <p class="products-seemore-title">See All Products</p>
+      </div>
+      <div class="products-seemore-right">
+        <span class="products-seemore-count">9 products · custom orders · coming soon</span>
+        <span class="products-seemore-arrow">→</span>
+      </div>
+    </a>
+
   </section>
 
   <!-- ── PROCESS ── -->
@@ -345,7 +314,7 @@
       <li><a href="index.html#">Home</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#products">Products</a></li>
+      <li><a href="products.html">Products</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://www.etsy.com/shop/spengraver" target="_blank">Etsy Shop</a></li>
     </ul>
@@ -353,7 +322,7 @@
   </footer>
 
   <script>
-    // Scroll reveal
+    // ── Scroll reveal ──
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
@@ -364,7 +333,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Contact form
+    // ── Contact form ──
     function handleSubmit(e) {
       e.preventDefault();
       const btn = document.querySelector('.form-submit');
@@ -373,7 +342,6 @@
         document.getElementById('contactForm').style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
       }, 1000);
-  
     }
 
   </script>
