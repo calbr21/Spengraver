@@ -1319,8 +1319,20 @@ footer {
 
   .product-card {
     padding: 1.25rem 1rem;
-  }  
-  
+  }
+
+  .products-seemore {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .products-seemore-count {
+    display: none;
+  }
+
+  .products-seemore-right {
+    flex-shrink: 1;
+  }
+
 
 }
 
