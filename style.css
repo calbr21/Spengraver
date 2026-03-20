@@ -536,6 +536,22 @@ section {
   z-index: 1;
 }
 
+.product-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  pointer-events: none;
+}
+
 .product-price {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
@@ -965,7 +981,6 @@ footer {
 
 #reviews {
   background: var(--bg);
-  padding: 100px 5%;
 }
  
 .reviews-header {
@@ -1202,22 +1217,19 @@ footer {
   .process-steps {
     grid-template-columns: 1fr;
   }
+
+  .product-card {
+    padding: 1.25rem 1rem;
+  }  
+  
+
 }
 
-/* Safari-specific fixes */
+/* Safari: force GPU compositing on product images to prevent clipping bugs */
 @supports (-webkit-touch-callout: none) {
-  .hero-ctas {
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
- 
-  .nav-links {
-    -webkit-gap: 2.5rem;
-    gap: 2.5rem;
-  }
- 
   .product-img {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
 }
+
+
