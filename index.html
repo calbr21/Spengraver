@@ -20,6 +20,7 @@
       <li><a href="portfolio.html">Portfolio</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="products.html">Products</a></li>
+      <li><a href="events.html">Events</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://www.etsy.com/shop/spengraver" target="_blank" class="nav-etsy">Shop on Etsy</a></li>
     </ul>
@@ -279,16 +280,16 @@
         <div class="form-row">
           <div class="form-group">
             <label>Your Name</label>
-            <input type="text" placeholder="Steven Hill" required>
+            <input type="text" name="name" placeholder="Steven Hill" required>
           </div>
           <div class="form-group">
             <label>Email Address</label>
-            <input type="email" placeholder="lindachill56@gmail.com" required>
+            <input type="email" name="email" placeholder="lindachill56@gmail.com" required>
           </div>
         </div>
         <div class="form-group">
           <label>What are you interested in?</label>
-          <select>
+          <select name="interest">
             <option value="">Select a product type...</option>
             <option>Personalised Gift</option>
             <option>Wedding / Event Item</option>
@@ -299,12 +300,12 @@
         </div>
         <div class="form-group">
           <label>Tell us about your order</label>
-          <textarea placeholder="Describe what you have in mind — names, dates, messages, sizes, materials, etc."></textarea>
+          <textarea name="message" placeholder="Describe what you have in mind — names, dates, messages, sizes, materials, etc."></textarea>
         </div>
         <p class="form-note">We aim to reply within 24 hours. For fastest response, message us directly on Etsy.</p>
         <button type="submit" class="form-submit">Send Message</button>
-        <div class="form-success" id="formSuccess">✓ Message sent — we'll be in touch soon!</div>
       </form>
+      <div class="form-success" id="formSuccess">✓ Message sent — we'll be in touch soon!</div>
     </div>
   </section>
 
@@ -316,6 +317,7 @@
       <li><a href="portfolio.html">Portfolio</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="products.html">Products</a></li>
+      <li><a href="events.html">Events</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://www.etsy.com/shop/spengraver" target="_blank">Etsy Shop</a></li>
     </ul>
@@ -335,14 +337,30 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // ── Contact form ──
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
-      const btn = document.querySelector('.form-submit');
+      const form = document.getElementById('contactForm');
+      const btn  = document.querySelector('.form-submit');
       btn.textContent = 'Sending...';
-      setTimeout(() => {
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      }, 1000);
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('submit.php', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
     }
 
   </script>
