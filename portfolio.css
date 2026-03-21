@@ -24,8 +24,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(14, 13, 11, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 13, 11, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(237, 233, 224, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237, 233, 224, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }

@@ -10,16 +10,17 @@
 
 /* ── CSS VARIABLES ── */
 :root {
-  --bg: #f5f3ef;
-  --ink: #0e0d0b;
-  --ink-mid: #3a3830;
-  --ink-soft: #7a786e;
-  --border: #d8d4c8;
-  --gold: #b8943a;
-  --gold-light: #d4aa50;
-  --white: #ffffff;
-  --card-bg: #ffffff;
-  --dark-surface: #0e0d0b;
+  color-scheme: dark;
+  --bg:           #171512;
+  --ink:          #ede9e0;
+  --ink-mid:      #c0bbb0;
+  --ink-soft:     #7a7870;
+  --border:       #2e2b24;
+  --gold:         #b8943a;
+  --gold-light:   #d4aa50;
+  --white:        #ffffff;
+  --card-bg:      #1f1d18;
+  --dark-surface: #0d0c0a;
 }
 
 html {
@@ -41,7 +42,7 @@ nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(245, 243, 239, 0.94);
+  background: rgba(23, 21, 18, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   display: flex;
@@ -122,8 +123,8 @@ nav {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(14, 13, 11, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 13, 11, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(237, 233, 224, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237, 233, 224, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -711,7 +712,7 @@ section {
    ============================================================ */
 
 #process {
-  background: #efece4;
+  background: #1a1814;
   text-align: center;
 }
 
@@ -763,7 +764,7 @@ section {
   margin: 0 auto 1.5rem;
   position: relative;
   z-index: 1;
-  border: 3px solid #efece4;
+  border: 3px solid #1a1814;
   transition: background 0.3s;
 }
 
@@ -806,7 +807,7 @@ section {
   font-weight: 900;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   text-transform: uppercase;
-  color: var(--ink);
+  color: #0e0d0b;
   letter-spacing: 0.02em;
 }
 
@@ -1133,7 +1134,7 @@ footer {
 }
  
 .review-card {
-  background: var(--white);
+  background: var(--card-bg);
   padding: 2rem 2rem 1.75rem;
   display: flex;
   flex-direction: column;
@@ -1343,70 +1344,5 @@ footer {
   }
 }
 
-/* ============================================================
-   DARK MODE
-   ============================================================ */
-
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    --bg:           #171512;
-    --ink:          #ede9e0;
-    --ink-mid:      #c0bbb0;
-    --ink-soft:     #7a7870;
-    --border:       #2e2b24;
-    --card-bg:      #1f1d18;
-    --dark-surface: #0d0c0a;
-  }
-
-  /* Nav */
-  nav {
-    background: rgba(23, 21, 18, 0.95);
-  }
-
-  /* Hero grid lines — lighten for dark bg */
-  .hero::before,
-  .portfolio-hero::before {
-    background-image:
-      linear-gradient(rgba(237, 233, 224, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(237, 233, 224, 0.04) 1px, transparent 1px);
-  }
-
-  /* Process section */
-  #process {
-    background: #1a1814;
-  }
-
-  .step-num {
-    border-color: #1a1814;
-  }
-
-  /* Product & review cards — use card-bg instead of hardcoded white */
-  .review-card {
-    background: var(--card-bg);
-  }
-
-  /* Etsy banner — text sits on gold so must stay dark */
-  .etsy-banner-text {
-    color: #0e0d0b;
-  }
-
-  /* Portfolio hero grid lines */
-  .portfolio-hero::before {
-    background-image:
-      linear-gradient(rgba(237, 233, 224, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(237, 233, 224, 0.04) 1px, transparent 1px);
-  }
-
-  /* Page hero (products.html) */
-  .page-hero {
-    border-bottom-color: var(--border);
-  }
-
-  /* Form select dropdown */
-  .form-group select option {
-    background: #1a1814;
-  }
-}
 
 
