@@ -1365,7 +1365,8 @@ footer {
   }
 
   /* Hero grid lines — lighten for dark bg */
-  .hero::before {
+  .hero::before,
+  .portfolio-hero::before {
     background-image:
       linear-gradient(rgba(237, 233, 224, 0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(237, 233, 224, 0.04) 1px, transparent 1px);
@@ -1388,6 +1389,13 @@ footer {
   /* Etsy banner — text sits on gold so must stay dark */
   .etsy-banner-text {
     color: #0e0d0b;
+  }
+
+  /* Portfolio hero grid lines */
+  .portfolio-hero::before {
+    background-image:
+      linear-gradient(rgba(237, 233, 224, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(237, 233, 224, 0.04) 1px, transparent 1px);
   }
 
   /* Page hero (products.html) */
