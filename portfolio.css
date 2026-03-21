@@ -14,7 +14,7 @@
   justify-content: center;
   text-align: center;
   padding: 120px 5% 60px;
-  background: var(--ink);
+  background: var(--bg);
   position: relative;
   overflow: hidden;
 }
@@ -24,8 +24,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(14, 13, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 13, 11, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -41,7 +41,7 @@
   font-size: clamp(3rem, 8vw, 6rem);
   line-height: 0.9;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--ink);
   margin-bottom: 1rem;
 }
 
@@ -52,7 +52,7 @@
 
 .portfolio-hero-sub {
   font-size: 1rem;
-  color: rgba(255,255,255,0.5);
+  color: var(--ink-soft);
   font-weight: 300;
   max-width: 420px;
   line-height: 1.7;
