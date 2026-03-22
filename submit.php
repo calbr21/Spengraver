@@ -98,6 +98,7 @@ $context = stream_context_create([
         'header'  => 'Content-Type: application/json',
         'content' => json_encode($payload),
         'ignore_errors' => true,
+        'timeout' => 10,
     ],
 ]);
 
