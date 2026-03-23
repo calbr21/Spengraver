@@ -843,6 +843,12 @@ section {
   background: #1a1408;
 }
 
+.etsy-banner-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 /* ============================================================
    CONTACT
    ============================================================ */
