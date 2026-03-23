@@ -19,13 +19,23 @@
     <ul class="nav-links">
       <li><a href="index.html#">Home</a></li>
       <li><a href="portfolio.html" class="nav-active">Portfolio</a></li>
-      <li><a href="index.html#about">About</a></li>
       <li><a href="products.html">Products</a></li>
       <li><a href="events.html">Events</a></li>
       <li><a href="index.html#contact">Contact</a></li>
       <li><a href="https://www.etsy.com/shop/spengraver" target="_blank" class="nav-etsy">Shop on Etsy</a></li>
     </ul>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="nav-mobile">
+    <a href="index.html#">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="products.html">Products</a>
+    <a href="events.html">Events</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://www.etsy.com/shop/spengraver" target="_blank" class="nav-etsy">Shop on Etsy</a>
+  </div>
 
   <!-- ── PORTFOLIO HERO ── -->
   <div class="portfolio-hero">
@@ -108,6 +118,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
+  <script src="nav.js"></script>
 
 </body>
 </html>
