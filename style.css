@@ -494,6 +494,13 @@ section {
   overflow: hidden;
 }
 
+.about-stall-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .laser-pattern {
   width: 100%;
   height: 100%;
